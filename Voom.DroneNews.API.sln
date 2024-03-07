@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Voom.DroneNews.API", "Voom.DroneNews.API\Voom.DroneNews.API.csproj", "{5DFE3E3A-E0E4-4D11-8EA0-B30BF3A36FD0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5DFE3E3A-E0E4-4D11-8EA0-B30BF3A36FD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DFE3E3A-E0E4-4D11-8EA0-B30BF3A36FD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DFE3E3A-E0E4-4D11-8EA0-B30BF3A36FD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DFE3E3A-E0E4-4D11-8EA0-B30BF3A36FD0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {15811E55-9D10-4827-812F-F39011590001}
+	EndGlobalSection
+EndGlobal
