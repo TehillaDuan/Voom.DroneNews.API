@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Primitives;
+using Newtonsoft.Json;
 using System.Net.Http;
 using Voom.DroneNews.API.Models;
 using Voom.DroneNews.API.Services.Interfaces;
@@ -7,7 +8,7 @@ namespace Voom.DroneNews.API.Services
 {
     public class NewsOrgProviderService : INewsProviderService
     {
-        public List<Article> GetDronesNews()
+        public List<Article> GetDronesNews(DateTime? from = null)
         {
             var articles = new List<Article>();
 
@@ -15,7 +16,14 @@ namespace Voom.DroneNews.API.Services
             {
                 client.DefaultRequestHeaders.Add("User-Agent", "Voom.DronesNews.API/1.0");
 
-                HttpResponseMessage response = client.GetAsync("https://newsapi.org/v2/everything?q=drones&apiKey=21e860b516094deb99822b18ea8ef1e1").Result;
+                var url = "https://newsapi.org/v2/everything?q=drones&apiKey=21e860b516094deb99822b18ea8ef1e1";
+
+                if (from.HasValue)
+                {
+                    url += $"&from={from.Value.ToString("yyyy-MM-dd")}";
+                }
+                
+                HttpResponseMessage response = client.GetAsync(url).Result;
 
                 if (response.IsSuccessStatusCode)
                 {

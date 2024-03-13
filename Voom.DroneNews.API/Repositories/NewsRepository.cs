@@ -8,14 +8,13 @@ namespace Voom.DroneNews.API.Repositories
     {
         private readonly List<Article> _articles;
         Dictionary<string, HashSet<Article>> _articlesIndexed;
-
+        private readonly INewsProviderService _newsProvider;
         public NewsRepository(INewsProviderService newsProvider)
         {
             _articles = new List<Article>();
             _articlesIndexed = new Dictionary<string, HashSet<Article>>(StringComparer.OrdinalIgnoreCase);
-            var articles = newsProvider.GetDronesNews();
-            InitiateData(articles); 
-
+            _newsProvider = newsProvider;
+            UpdateNews(null);
         } 
         public void AddNews(Article article) 
         {
@@ -53,6 +52,11 @@ namespace Voom.DroneNews.API.Repositories
             }
               
             return result.Skip(skip).Take(take).ToList();
+        }
+        public void UpdateNews(DateTime? from)
+        {
+            var articles = _newsProvider.GetDronesNews(from);
+            InitiateData(articles);
         }
         private void BuildIndex(Article article) 
         {
