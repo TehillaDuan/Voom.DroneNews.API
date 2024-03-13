@@ -4,6 +4,6 @@ namespace Voom.DroneNews.API.Services.Interfaces
 {
     public interface INewsProviderService
     {
-        List<Article> GetDronesNews();
+        List<Article> GetDronesNews(DateTime? from);
     }
 }

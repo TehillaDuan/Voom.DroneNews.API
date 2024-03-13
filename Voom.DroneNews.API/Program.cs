@@ -1,11 +1,15 @@
+using Hangfire;
 using Voom.DroneNews.API.Repositories;
 using Voom.DroneNews.API.Repositories.Interfaces;
 using Voom.DroneNews.API.Services;
 using Voom.DroneNews.API.Services.Interfaces;
+using Hangfire;
+using Hangfire.MemoryStorage;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<INewsProviderService, NewsOrgProviderService>();
+builder.Services.AddHangfire(config => config.UseMemoryStorage());
 builder.Services.AddSingleton<INewsRepository, NewsRepository>();
 builder.Services.AddScoped<INewsService, NewsService>();
 
@@ -23,10 +27,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseHangfireServer();
+app.UseHangfireDashboard();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+RecurringJob.AddOrUpdate<INewsService>(x => x.UpdateNews(DateTime.Today), Cron.Daily);
 
 app.Run();

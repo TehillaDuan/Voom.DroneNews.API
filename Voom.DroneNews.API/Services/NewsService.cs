@@ -28,5 +28,10 @@ namespace Voom.DroneNews.API.Services
                 Url = article.Url   
             }).ToList();
         }
+
+        public void UpdateNews(DateTime? from)
+        {
+            _newsRepository.UpdateNews(from);   
+        }
     }
 }
